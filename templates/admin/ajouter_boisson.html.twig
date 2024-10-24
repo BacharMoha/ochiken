@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une Boisson{% endblock %}
+
+{% block body %}
+<style>
+/* Conteneur pour l'image de fond */
+.background-image {
+    position: fixed; /* Position fixe pour qu'elle reste à l'arrière */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("{{ asset('images/une image de boissons en boutelle avec des gouttes deau faraiche, la première bouteille en Fanta debout, la deuxième en cola debout, et une bouteille dorange allongée. Limage en arrière-plan est noire avec un grandiant centralisé en bl.png') }}") no-repeat center center;
+    background-size: cover;
+    filter: blur(9px); /* Applique le flou */
+    z-index: -1; /* Place derrière le contenu */
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 500px; /* Largeur maximale du conteneur */
+    margin: 100px auto; /* Centre le conteneur avec un espacement en haut */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85); /* Couleur de fond avec transparence */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Ombre portée */
+    border-radius: 10px; /* Arrondir les coins */
+    position: relative; /* Position relative pour le contenu */
+}
+
+/* Titre du formulaire */
+.form-title {
+    text-align: center; /* Centre le titre */
+    font-size: 26px; /* Taille de police */
+    margin: 10px 0; /* Marges réduites */
+    color: #333; /* Couleur du texte */
+    font-weight: bold; /* Gras */
+}
+
+/* Logo */
+.logo {
+    display: block; /* Affiche le logo comme un bloc */
+    margin: 0 auto 10px auto; /* Centre le logo avec un espacement réduit */
+    max-width: 170px; /* Taille maximale du logo */
+}
+
+/* Style général pour les champs */
+.form-group {
+    margin-bottom: 8px; /* Espacement entre les champs */
+    display: flex;
+    flex-direction: column; /* Disposition verticale */
+}
+
+/* Styles des champs input */
+.form-control {
+    width: 100%; /* Largeur à 100% */
+    padding: 10px; /* Padding pour les champs */
+    font-size: 14px; /* Taille de la police */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 20px; /* Arrondi des bords */
+    outline: none; /* Enlève le contour par défaut */
+    transition: border-color 0.3s ease; /* Transition sur la bordure */
+    background-color: #f9f9f9; /* Couleur de fond */
+}
+
+.form-control:focus {
+    border-color: #ea551d; /* Couleur de bordure au focus */
+    background-color: #fff; /* Couleur de fond au focus */
+    box-shadow: 0 0 8px rgba(234, 85, 29, 0.5); /* Ombre portée au focus */
+}
+
+/* Champ pour le fichier */
+.form-control-file {
+    width: 100%; /* Largeur à 100% */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 20px; /* Arrondi des bords */
+    outline: none; /* Enlève le contour par défaut */
+    text-align: center; /* Centre le texte */
+    padding: 10px; /* Padding pour un meilleur aspect */
+    cursor: pointer; /* Curseur pointer */
+    background-color: #f9f9f9; /* Couleur de fond */
+}
+
+/* Bouton de soumission */
+.btn-submit {
+    background-color: #ea551d; /* Couleur de fond */
+    color: #ffffff; /* Couleur du texte */
+    border: none; /* Enlève la bordure */
+    width: 100%; /* Largeur à 100% */
+    padding: 12px; /* Padding */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointer */
+    border-radius: 20px; /* Arrondi des bords */
+    transition: background-color 0.3s ease; /* Transition sur la couleur de fond */
+    margin-top: 10px; /* Espacement en haut */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+}
+
+.btn-submit:hover {
+    background-color: #c84315; /* Couleur au survol */
+}
+
+/* Bouton retour à l'accueil */
+.btn-back {
+    background-color: #555; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Enlève la bordure */
+    padding: 10px; /* Padding */
+    font-size: 14px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointer */
+    border-radius: 20px; /* Arrondi des bords */
+    margin-top: 15px; /* Espacement en haut */
+    width: 100%; /* Largeur à 100% */
+    transition: background-color 0.3s ease; /* Transition sur la couleur de fond */
+}
+
+.btn-back:hover {
+    background-color: #444; /* Couleur au survol */
+}
+</style>
+
+<div class="background-image"></div> <!-- Div pour l'image de fond -->
+
+<div class="container">
+    <h2 class="form-title">Ajouter une Nouvelle Boisson</h2>
+
+    <!-- Emplacement pour le logo -->
+    <img src="{{ asset('images/logos.png') }}" alt="Logo" class="logo"> <!-- Remplacez 'images/logo.png' par le chemin de votre logo -->
+
+    <form method="post" action="{{ path('app_boissons') }}" enctype="multipart/form-data" class="boisson-form">
+        
+        <!-- Champ pour le titre -->
+        <div class="form-group">
+            <label for="titre">Titre de la boisson</label>
+            <input type="text" id="titre" name="titre" class="form-control" placeholder="Titre" required>
+        </div>
+
+        <!-- Champ pour le prix -->
+        <div class="form-group">
+            <label for="prix">Prix (en KMF)</label>
+            <input type="number" id="prix" name="prix" class="form-control" placeholder="Prix" required step="0.01">
+        </div>
+
+        <!-- Champ pour l'image -->
+        <div class="form-group">
+            <label for="image">Image de la boisson</label>
+            <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit" class="btn-submit">Ajouter la Boisson</button>
+    </form>
+
+    <!-- Bouton retour à l'accueil en bas du formulaire -->
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ path('app_admin') }} " class="btn-back">Retour à l'Accueil</a>
+    </div>
+</div>
+{% endblock %}

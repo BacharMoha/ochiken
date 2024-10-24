@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+		<title>Profil Utilisateur</title>
+		<style>
+			/* Styles de base */
+			body {
+				font-family: 'Arial', sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+			}
+
+			.container {
+				display: flex;
+				margin: 50px auto;
+				max-width: 1200px;
+				background-color: white;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+				border-radius: 15px;
+				overflow: hidden;
+			}
+
+			/* Barre de navigation */
+			.navbar {
+				background-color: #ffe5d1;
+				height: 60px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 20px;
+			}
+
+			/* Section de gauche pour les infos utilisateur */
+			.profile-section {
+				background-color: #ffffff;
+				width: 40%;
+				padding: 40px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				border-right: 2px solid #f0f0f0;
+			}
+
+			.profile-picture {
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				overflow: hidden;
+				margin-bottom: 20px;
+				border: 4px solid #ea551d;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+			}
+
+			.profile-picture img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.upload-btn {
+				display: block;
+				margin-top: 10px;
+				background-color: #ea551d;
+				color: white;
+				border: none;
+				padding: 10px 15px;
+				cursor: pointer;
+				border-radius: 20px;
+				font-size: 14px;
+				transition: background-color 0.3s ease;
+			}
+
+			.upload-btn:hover {
+				background-color: #c84315;
+			}
+
+			.form-group {
+				width: 100%;
+				margin-bottom: 15px;
+			}
+
+			.form-group label {
+				font-weight: bold;
+				display: block;
+				margin-bottom: 5px;
+			}
+
+			.form-group input {
+				width: 100%;
+				padding: 10px 10px 10px 35px;
+				border-radius: 30px;
+				border: 2px solid #ea551d;
+			}
+			.submit-btn {
+				background-color: #ea551d;
+				color: white;
+				padding: 12px 20px;
+				border: none;
+				border-radius: 25px;
+				cursor: pointer;
+				font-size: 16px;
+				margin-top: 20px;
+				width: 50%;
+				text-align: center;
+			}
+
+			.submit-btn:hover {
+				background-color: #c84315;
+			}
+
+			/* Section de droite pour les statistiques */
+			.stats-section {
+				display: flex;
+				flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+				gap: 10px; /* Espace entre les cercles */
+				justify-content: center; /* Centrer les cercles horizontalement */
+				align-items: center;
+				background-color: #f9f9f9;
+				padding: 40px;
+			}
+
+			.stat-circle {
+				width: 140px;
+				height: 140px;
+				border-radius: 50%;
+				background-color: #ffffff;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+				transition: box-shadow 0.3s ease, transform 0.3s ease;
+				border: 2px solid #ea551d;
+			}
+
+			.stat-circle:hover {
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.30);
+				transform: translateY(-10px);
+			}
+
+			.stat-number {
+				font-size: 28px;
+				font-weight: bold;
+				color: #ea551d;
+			}
+
+			.stat-label {
+				font-size: 15px;
+				color: #555;
+				text-align: center;
+			}
+			.submit-btn {
+				width: 100%;
+				padding: 15px;
+				background-color: #ea551d;
+				color: #ffffff;
+				border: none;
+				border-radius: 30px;
+				font-size: 16px;
+				cursor: pointer;
+				margin-top: 10px;
+			}
+			.submit-btns {
+				width: 75%;
+				padding: 15px;
+				background-color: #da9a7a;
+				color: #ffffff;
+				border: none;
+				border-radius: 30px;
+				font-size: 16px;
+				cursor: pointer;
+				margin-top: 10px;
+			}
+			/*             
+.stats-section {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 40px; 
+        justify-content: center; 
+        align-items: center;
+        background-color: #f9f9f9;
+        padding: 40px;
+    }
+
+    .stat-circle {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        border: 4px solid #ea551d;
+    }
+
+    .stat-circle:hover {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ea551d;
+    }
+
+    .stat-label {
+        font-size: 15px;
+        color: #555;
+        text-align: center;
+    } */
+			.profile-picture {
+				position: relative; /* Allows the icon to be positioned above the image */
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				overflow: hidden;
+				margin-bottom: 20px;
+				border: 4px solid #ea551d;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+			}
+
+			.edit-icon {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				background-color: #ea551d;
+				color: white;
+				border-radius: 50%;
+				padding: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+
+			.edit-icon:hover {
+				background-color: #c84315;
+			}
+
+			.edit-icon i {
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Barre de navigation -->
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav" style="background: transparent;">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Profil
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="border-radius: 20px;">
+								<li>
+									<a class="dropdown-item" href="">
+										{{ app.user.username }}</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										{{ app.user.userIdentifier }}</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item text-danger" href="{{ path('app_logout')}}">Déconnexion</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</body>
+</html></div><!-- Conteneur principal --><div
+class="container">
+<!-- Section gauche pour les informations utilisateur -->
+<div class="profile-section">
+	<div
+		class="profile-picture">
+		<!-- Icon for modification -->
+		<a href="#" class="edit-icon" onclick="document.getElementById('file-upload').click(); return false;">
+			<i class="fas fa-edit"></i>
+		</a>
+        {% if app.user.image  is null %}
+            <img
+		src="{{ asset('images/PHOTO-2024-10-24-13-46-37.jpg') }}" alt="Photo de profil">
+        {% endif %}
+		<img
+		src="{{ asset('images/' ~ app.user.image ) }}" alt="Photo de profil">
+		<!-- Hidden file input for image upload -->
+	</div>
+  {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label == 'error' ? 'danger' : label == 'success' ? 'success' : 'info' }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+	<form method="POST" enctype="multipart/form-data" >
+		<input type="file" name="image" id="file-upload" style="display: none;" onchange="uploadImage(this)">
+			<input type="hidden" id="nom" name="id" value="{{ app.user.id }}">
+
+
+		<div class="form-group">
+			<label for="nom">Nom & Prénom</label>
+			<input type="text" id="nom" name="nom" value="{{ app.user.username }}">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" value="{{ app.user.email }}">
+		</div>
+        <div class="form-group">
+			<label for="email">Telephone</label>
+			<input type="number" id="email" name="telephone" value="{{ app.user.telephone }}">
+		</div>
+		<div class="form-group">
+			<label for="new-password">Nouveau mot de passe</label>
+			<input type="password" id="new-password" name="new-password" placeholder="Nouveau mot de passe">
+		</div>
+		<div class="form-group">
+			<label for="confirm-password">Confirmer le nouveau mot de passe</label>
+			<input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmer le mot de passe">
+		</div>
+		<button type="submit" class="submit-btn">Modifier</button>
+	</form>
+</div>
+
+
+<!-- Section droite pour les statistiques -->
+<div class="stats-section">
+	<div class="stat-circle">
+		<div class="stat-number">{{ chiken|length + boisson|length + sandwich|length +  tendance|length +  special|length }}</div>
+		<div class="stat-label">Produits</div>
+	</div>
+	<div class="stat-circle">
+		<div class="stat-number">{{ chiken|length}}</div>
+		<div class="stat-label">Chickens</div>
+	</div>
+	<div class="stat-circle">
+		<div class="stat-number">{{ boisson|length}}</div>
+		<div class="stat-label">Boissons</div>
+	</div>
+	<div class="stat-circle">
+		<div class="stat-number">{{ sandwich|length}}</div>
+		<div class="stat-label">Sandwichs</div>
+	</div>
+	<div class="stat-circle">
+		<div class="stat-number">{{ tendance|length}}</div>
+		<div class="stat-label">Tendances</div>
+	</div>
+	<div class="stat-circle">
+		<div class="stat-number">{{ special|length}}</div>
+		<div class="stat-label">Plats Spéciaux</div>
+	</div>
+	<a href="{{ path('app_admin') }}" style="text-align: center; text-decoration: none;" class="submit-btns">Retour</a>
+</div></div></body><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+<script>
+    // Fonction pour gérer la sélection de fichier et prévisualiser la nouvelle image
+    function uploadImage(input) {
+        if (input.files && input.files[0]) {
+            // Crée un objet URL pour l'image sélectionnée
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                // Met à jour la source de l'image avec la nouvelle image sélectionnée
+                document.querySelector('.profile-picture img').src = e.target.result;
+            }
+
+            // Lis le fichier comme URL de données
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+</html>

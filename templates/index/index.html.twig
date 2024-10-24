@@ -1,0 +1,707 @@
+
+{# templates/menu.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Menu du Restaurant</title>
+		<style>
+			/* Style général */
+			* {
+				padding: 0;
+
+			}
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #f8f9fa;
+				font-family: 'Roboto', sans-serif;
+
+			}
+
+			/* Conteneur principal */
+			.container {
+				display: flex;
+				width: 100%;
+				height: 100%;
+			}
+
+			/* Section gauche (carrousel) */
+			.left-section {
+				width: 25%;
+				background-color: #050C20;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.carousel {
+				display: flex;
+				animation: slide-left 10s infinite;
+			}
+
+			/* Animation pour le carrousel de droite à gauche avec fondu */
+			@keyframes slide-left {
+				0% {
+					transform: translateX(0);
+					opacity: 1;
+				}
+				33% {
+					transform: translateX(-100%);
+					opacity: 0.5;
+				}
+				66% {
+					transform: translateX(-200%);
+					opacity: 1;
+				}
+				100% {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+
+
+			/* Section droite (grille d'images) */
+			.right-section {
+				width: 75%;
+				background-color: #fff;
+	
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				align-content: flex-start;
+				overflow-y: auto;
+			}
+
+			/* Style des items avec description et prix */
+			.menu-item {
+				margin-top: 95px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				width: 30%;
+				margin-bottom: 10px;
+				text-align: center;
+				font-family: 'Roboto', sans-serif;
+				box-sizing: border-box;
+				position: relative;
+			}
+
+			.menu-item img {
+				width: 100%;
+				height: 250px;
+
+				border-radius: 10px;
+				margin-bottom: 10px;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+
+			.menu-item .description {
+				font-size: 16px;
+				color: #333;
+				margin: 5px 0;
+			}
+
+			.menu-item .price {
+				font-size: 18px;
+				color: #e74c3c;
+				font-weight: bold;
+				margin-top:-20px;
+			}
+
+			/* Style de la zone publicitaire */
+			.ad-section {
+				width: 100%;
+				margin-top: 20px;
+				padding: 10px;
+				background-color: #ff7f00;
+				color: white;
+				text-align: center;
+				font-size: 20px;
+				font-weight: bold;
+				border-radius: 10px;
+			}
+
+			/* Style responsive */
+			@media screen and(max-width: 1024px) {
+				.container {
+					flex-direction: column;
+				}
+
+				.left-section,
+				.right-section {
+					width: 100%;
+				}
+
+				.menu-item img {
+					width: 45%;
+					height: 120px;
+				}
+			}
+			/* Styling for carousel items */
+			.carousel-item {
+				position: relative;
+				text-align: center;
+				color: white;
+				width: 100%;
+			}
+
+			.carousel-item img {
+				width: 100%;
+				height: auto;
+				object-fit: contain;
+			}
+
+			/* Description and Price styling */
+			.carousel-description {
+				position: absolute;
+				bottom: 10px;
+				left: 0;
+				right: 0;
+				background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+				padding: 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 16px;
+				color: #fff;
+				border-radius: 0 0 10px 10px;
+			}
+
+			.item-name {
+				font-weight: bold;
+			}
+
+			.item-price {
+				font-size: 18px;
+				color: #e74c3c;
+				font-weight: bold;
+			}
+			.description p {
+				background: #fae9d7;
+				font-weight: bold;
+				rotate: -5deg;
+				font-size: 30px;
+				border-radius: 7px;
+				font-family: "Brush Script MT", cursive;
+				font-family: "Blippo", fantasy;
+				font-family: "Chalkduster", fantasy;
+				font-family: "Chalkduster", fantasy;
+				font-family: "Luminari", "Comic Sans MS", cursive, sans-serif;
+				font-family: "Great Vibes", cursive;
+				font-family: "Comic Sans MS", cursive, sans-serif;
+
+			}
+			.descriptions p {
+				font-size: 17px;
+				font-family: "Brush Script MT", cursive;
+				font-family: "Blippo", fantasy;
+
+				font-family: "Chalkduster", fantasy;
+				font-family: "Luminari", "Comic Sans MS", cursive, sans-serif;
+				font-family: "Great Vibes", cursive;
+				font-family: "Comic Sans MS", cursive, sans-serif;
+
+			}
+			.price p {
+				position: absolute;
+				width: 100%;
+				background: #ea551d;
+				padding: 2px;
+
+				border-radius: 5px;
+				margin-left: -25%;
+				font-family: "Comic Sans MS", cursive, sans-serif;
+			}
+			.textrb p {
+				font-family: "Brush Script MT", cursive;
+				font-family: "Blippo", fantasy;
+				font-family: "Great Vibes", cursive;
+				font-family: "Comic Sans MS", cursive, sans-serif;
+			}
+			div .textrb {
+				width: 70%;
+			}
+			h1 {
+				rotate: -5deg;
+				font-family: "Blippo", fantasy;
+				font-family: "Chalkduster", fantasy;
+				font-family: "Chalkduster", fantasy;
+				font-family: "Luminari", "Comic Sans MS", cursive, sans-serif;
+				font-family: "Great Vibes", cursive;
+				font-family: "Comic Sans MS", cursive, sans-serif;
+			}
+			h1 {
+
+				font-size: 50px;
+				color: white;
+				letter-spacing: 5px;
+				text-transform: uppercase;
+				font-weight: bold;
+				padding: 0px;
+				margin: 10px 10% 10%;
+				/* Remplacez l'URL par une vraie image d'effet pinceau */
+				text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Ajoute un léger ombrage au texte */
+				text-align: center;
+				animation: attentionAnimation 4s infinite ease-in-out;
+				position: relative;
+			}
+			/* Animation principale */
+			@keyframes attentionAnimation {
+				0% {
+					transform: scale(0.8) translateY(0); /* Démarre avec une légère réduction */
+					opacity: 0;
+				}
+				10% {
+					transform: scale(1.2) translateY(-10px); /* Zoom rapide avec un léger rebond */
+					opacity: 1;
+				}
+				30% {
+					transform: scale(1) translateY(0); /* Retour à la taille normale */
+				}
+				60% {
+					text-shadow: 0 0 15px rgba(255, 105, 0, 0.8), 0 0 30px rgba(255, 150, 0, 0.5); /* Éclat lumineux */
+				}
+				100% {
+					transform: scale(1) translateY(0);
+					opacity: 1;
+					text-shadow: none;
+				}
+			}
+
+			/* Effet de surbrillance pour un éclat subtil */
+			h1::before {
+				content: '';
+				position: fixed;
+				top: 50%;
+				left: -500%;
+				width: 100%;
+				height: 200%;
+				background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+				animation: shine 3s infinite ease-in-out;
+				transform: skewX(-10deg);
+			}
+
+			/* Animation de surbrillance */
+			@keyframes shine {
+				0% {
+					left: 2%;
+				}
+				20% {
+					left: 2%;
+				}
+				30% {
+					left: 2%;
+				}
+			}
+			.carousel-container {
+				width: 100%;
+				height: 400px; /* Ajuste selon tes besoins */
+				position: relative;
+			}
+
+			.carousel-track {
+				display: flex;
+				transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transition dynamique */
+				will-change: transform;
+
+			}
+
+			.carousel-slide {
+				min-width: 100%;
+				transition: opacity 1s ease-in-out; /* Douce transition d'opacité */
+				height: 100%;
+			}
+
+			.carousel-slide img {
+				width: 100%;
+				height: 340px;
+				border-radius: 10px;
+				margin-bottom: 10px;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			h2 {
+				margin-top: 1%;
+				font-size: 40px;
+				text-align: center;
+				color: #ea551d;
+				text-transform: uppercase;
+			}
+			.info-container {
+				position: relative;
+				text-align: center;
+				color: #f8f9fa;
+			}
+			.info-container .prix {
+
+				position: absolute;
+				top: -250%;
+				left: 30%;
+				font-family: Poppins;
+				border-bottom: #e74c3c solid 3px;
+				color: #f8f9fa;
+				font-size: 50px;
+			}
+			.menu-slider {
+				margin: 0 auto;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.menu-items {
+				display: flex;
+				transition: transform 0.5s ease;
+			}
+
+			.menu-item {
+				min-width: 33.33%; /* Afficher 3 éléments à la fois */
+				padding-bottom: 90px;
+				text-align: center;
+			}
+			.menu-sliders {
+				margin: -10% auto 0;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.menu-x {
+				display: flex;
+				transition: transform 0.5s ease;
+			}
+
+			.menu-ite {
+				min-width: 33.33%; /* Afficher 3 éléments à la fois */
+				padding-bottom: 90px;
+				text-align: center;
+			}
+			.menu-ite {
+				margin-top: 10%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				width: 30%;
+				text-align: center;
+				font-family: 'Roboto', sans-serif;
+				box-sizing: border-box;
+				position: relative;
+			}
+
+			.menu-ite img {
+				width: 100%;
+				height: 250px;
+				animation: zigzag 4s linear infinite;
+				border-radius: 10px;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+
+			.menu-ite .description {
+				font-size: 16px;
+				color: #333;
+				margin: 5px 0;
+			}
+
+			.menu-ite .price {
+				font-size: 18px;
+				color: #e74c3c;
+				font-weight: bold;
+				margin-top:-20px;
+
+			}
+			.piece p {
+				background: #fae9d7;
+				font-weight: bold;
+				font-size: 25px;
+				border-radius: 7px;
+
+				font-family: "Comic Sans MS", cursive, sans-serif;
+				position: absolute;
+				top: 43%;
+				left: 35%;
+
+
+			}
+.vv{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+			/* Style de la zone publicitaire */
+		</style>
+	</head>
+	<body>
+
+		<div
+			class="container" class="page" id="page1">
+			<!-- Section gauche : carrousel d'images -->
+			<div class="left-section">
+				<img style="position:absolute; top:-7%; width: 85%;" src="{{ asset('images/logo.png') }}">
+
+
+				<div class="carousel-container">
+					<div class="carousel-track">
+						{% for chiken in chikens %}
+						<div class="carousel-slide">
+
+							<h2>{{ chiken.libelle }}</h2>
+
+							<img src="{{ asset('images/'~ chiken.image) }}" alt="Plat 1">
+							<div class="info-container" >
+								<p class="vv" style="font-size:xxx-large; background:#ea551d; width: 55%; text-align: center; margin-left: 20%; border-radius: 10px;">{{ chiken.piece }} pieces</p>
+								<p class="prix">{{ chiken.prix }} KMF</p>
+
+							</div>
+						</div>
+							{% for tendances in tendance %}
+						<div class="carousel-slide">
+
+							<h2>{{ tendances.libelle }}</h2>
+
+							<img src="{{ asset('images/'~ tendances.image) }}" alt="Plat 1">
+							<div class="info-container" >
+<p class="vv" style="font-size:25px; margin-left:%;  position:absolute; margin-top:10%">{{ tendances.description }}</p>
+								<p class="prix" style="margin-top:-9%">{{ tendances.prix }} KMF</p>
+
+							</div>
+						</div>
+						{% endfor %}
+						{% endfor %}
+					</div>
+					
+				</div>
+
+
+			</div>
+
+			<!-- Section droite : grille d'images avec description et prix -->
+			<div class="right-section">
+				<div class="navig" style=" height: 10%; position: absolute; width: 75%;">
+					<h1 style="color: #ea551d; text-align: center;  letter-spacing: 2px; font-size: 50px;">Bienvenue 😊!!</h1>
+				</div>
+				<div class="menu-slider">
+					<div class="menu-items">
+					{% for chiken in chikens %}
+						{% if  chiken.idcategorie ? chiken.idcategorie.libelle =="menu famille"  %}
+							
+						<div class="menu-item" style="float: left;">
+							<img src="{{ asset('images/'~ chiken.image) }}" alt="Miniature 1">
+							<div class="piece">
+								<p>
+									{{ chiken.piece }} pièces 
+								</p>
+							</div>
+							<div class="description">
+								<p>
+									{{ chiken.libelle }}
+								</p>
+							</div>
+
+							{# <div class="descriptions">
+							                                <p>
+							                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							                                                                                                                                                            Vel at labore ipsum distinctio nulla repudiandae id ipsam placeat,</p>
+							                            </div> #}
+							<div class="price">
+								<p style=" color: #f8f9fa; font-size: 30px; width: 50%; text-align:center; ">
+									{{ chiken.prix }} KMF
+								</p>
+							</div>
+						</div>
+						{% endif %}
+					{% endfor %}
+					{% for poulet in poulets %}
+						{% if  poulet.idcategorie ? poulet.idcategorie.libelle =="menu famille"  %}
+							
+						<div class="menu-item" style="float: left;">
+							<img src="{{ asset('images/'~ poulet.image) }}" alt="Miniature 1">
+							<div class="piece">
+								<p>
+									{{ poulet.piece }} pièces 
+								</p>
+							</div>
+							<div class="description">
+								<p>
+									{{ poulet.libelle }}
+								</p>
+							</div>
+
+							{# <div class="descriptions">
+							                                <p>
+							                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							                                                                                                                                                            Vel at labore ipsum distinctio nulla repudiandae id ipsam placeat,</p>
+							                            </div> #}
+							<div class="price">
+								<p style=" color: #f8f9fa; font-size: 30px; width: 50%; text-align:center; ">
+									{{ poulet.prix }} KMF
+								</p>
+							</div>
+						</div>
+						{% endif %}
+					{% endfor %}
+
+
+					</div>
+				</div>
+				<div class="menu-sliders">
+					<div class="menu-x">
+					{% for chiken in chikens %}
+						{% if  chiken.idcategorie ? chiken.idcategorie.libelle =="menu standards"  %}
+					
+						<div class="menu-ite" style="float: left;">
+							<img src="{{ asset('images/'~ chiken.image) }}" alt="Miniature 1">
+							<div class="piece">
+								<p>
+									{{ chiken.piece }} pièces
+								</p>
+							</div>
+							<div class="description">
+								<p>
+									{{ chiken.libelle }}
+								</p>
+							</div>
+
+							{# <div class="descriptions">
+							                                <p>
+							                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							                                                                                                                                                            Vel at labore ipsum distinctio nulla repudiandae id ipsam placeat,</p>
+							                            </div> #}
+							<div class="price">
+								<p style=" color: #f8f9fa; font-size: 30px; width: 50%; text-align:center; ">
+									{{ chiken.prix }} KMF
+								</p>
+							</div>
+						</div>
+					{% endif %}
+					{% endfor %}
+					{% for chiken in chikens %}
+						{% if  chiken.idcategorie ? chiken.idcategorie.libelle =="menu standards"  %}
+					
+						<div class="menu-ite" style="float: left;">
+							<img src="{{ asset('images/'~ chiken.image) }}" alt="Miniature 1">
+							<div class="piece">
+								<p>
+									{{ chiken.piece }} pièces
+								</p>
+							</div>
+							<div class="description">
+								<p>
+									{{ chiken.libelle }}
+								</p>
+							</div>
+
+							{# <div class="descriptions">
+							                                <p>
+							                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							                                                                                                                                                            Vel at labore ipsum distinctio nulla repudiandae id ipsam placeat,</p>
+							                            </div> #}
+							<div class="price">
+								<p style=" color: #f8f9fa; font-size: 30px; width: 50%; text-align:center; ">
+									{{ chiken.prix }} KMF
+								</p>
+							</div>
+						</div>
+					{% endif %}
+					{% endfor %}
+				
+					</div>
+				</div>
+				<div class="textrb">
+					<p style="position: relative; bottom: -30%; color: white; font-weight: bolder; font-size: 25px;">
+						<marquee>
+						{% for textes in texte %}
+							{{textes.texte}}
+						{% endfor %}
+							</marquee>
+					</p>
+				</div>
+				<div style="margin-top: -5%;">
+					<img src="{{ asset('images/rb.png') }}" height="100px" width="1010px">
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+</html>
+<script>
+	const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+
+let currentSlide = 0;
+const totalSlides = slides.length;
+const slideInterval = 3000;
+// Intervalle de 5 secondes
+
+// Fonction pour passer à la slide suivante
+function moveToSlide(slideIndex) { // Calcul de la position de la nouvelle slide
+const slideWidth = slides[0].getBoundingClientRect().width;
+const moveAmount = -(slideIndex * slideWidth);
+
+// Appliquer la transformation pour faire défiler les slides
+track.style.transform = `translateX(${moveAmount}px)`;
+
+currentSlide = slideIndex;
+}
+
+// Démarrage de l'intervalle automatique
+setInterval(() => {
+if (currentSlide < totalSlides - 1) {
+moveToSlide(currentSlide + 1);
+} else {
+moveToSlide(0); // Revenir à la première slide
+}
+}, slideInterval);
+
+let currentIndex = 0;
+const itemsToShow = 3; // Afficher 3 éléments à la fois
+const menuItems = document.querySelectorAll('.menu-item');
+const totalItems = menuItems.length;
+const menuContainer = document.querySelector('.menu-items');
+
+// Fonction pour mettre à jour le défilement
+const updateSlide = () => {
+const offset = -(currentIndex * (100 / itemsToShow)) + '%';
+menuContainer.style.transform = `translateX(${offset})`;
+};
+
+// Fonction pour faire défiler les éléments automatiquement
+const autoSlide = () => {
+currentIndex++;
+if (currentIndex >= totalItems - itemsToShow) {
+currentIndex = 0; // Revenir au début
+}updateSlide();
+};
+
+// Démarrer le défilement automatique toutes les 3 secondes
+setInterval(autoSlide, 3000); // Défilement toutes les 3 secondes
+
+let currentIndexs = 0;
+const itemsToShows = 3; // Afficher 3 éléments à la fois
+const menuItem = document.querySelectorAll('.menu-ite');
+const totalItem = menuItem.length;
+const menuContainers = document.querySelector('.menu-x');
+
+// Fonction pour mettre à jour le défilement
+const upslide = () => {
+const offset = -(currentIndexs * (100 / itemsToShows)) + '%';
+menuContainers.style.transform = `translateX(${offset})`;
+};
+
+// Fonction pour faire défiler les éléments automatiquement
+const auSlide = () => {
+currentIndexs++;
+if (currentIndexs >= totalItem - itemsToShows) {
+currentIndexs = 0; // Revenir au début
+}upslide(); // Appel de la fonction upslide correcte
+};
+
+// Démarrer le défilement automatique toutes les 3 secondes
+setInterval(auSlide, 3000); // Défilement toutes les 3 secondes
+</script>
